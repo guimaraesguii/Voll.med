@@ -1,11 +1,11 @@
 package med.voll.api.paciente;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.endereco.Endereco;
-import med.voll.api.medico.DadosAtualizacaoMedicos;
 
 @Table(name = "pacientes")
 @Entity(name = "Paciente")
@@ -36,8 +36,8 @@ public class Paciente {
         this.telefone = dados.telefone();
         this.ativo = true;
     }
-    public void atualizarInformacoes(DadosAtualizacaoMedicos dados){
-        if (dados.nome() != null) {
+    public void atualizarInformacoes( DadosAtualizacaoPaciente dados){
+        if (nome != null) {
             this.nome = dados.nome();
         }
         if (dados.telefone() != null){
@@ -49,6 +49,7 @@ public class Paciente {
     }
 
     public void excluir() {
+
         this.ativo = false;
     }
 }
